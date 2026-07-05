@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { href: "#ekosistem", label: "Ekosistem" },
   { href: "#asosiasi", label: "10 Asosiasi" },
   { href: "#direktori", label: "Direktori" },
-  { href: "#member", label: "Daftar Member" },
+  { href: "#member", label: "Statistik Member" },
   { href: "#ebip", label: "Eco Blue Park" },
   { href: "#wisata", label: "Blue Tourism" },
   { href: "#produk", label: "100+ Produk" },

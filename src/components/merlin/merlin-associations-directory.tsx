@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Sprout, Warehouse, Factory, Zap, Box, Leaf, Palmtree, Cloud,
   FlaskConical, Ship, Search, Users, Mail, Phone, X, Crown, MapPin,
-  Coins, TrendingUp, ChevronRight,
+  TrendingUp, ChevronRight,
 } from "lucide-react";
 import { SectionHeader, Pill } from "./section-header";
 import { TiltCard, StaggerGroup, StaggerItem } from "./merlin-animations";
@@ -47,11 +47,6 @@ const COLOR_ACCENT: Record<string, string> = {
 };
 
 const LINE_FILTERS = ["Semua", "Hulu", "Konsolidasi", "Hilir 1", "Hilir 2", "Hilir 3", "Hilir 4", "Wisata", "Carbon", "Otak", "Dagang"];
-
-function formatRp(juta: number) {
-  if (juta >= 1000) return `Rp${(juta / 1000).toFixed(1)} M`;
-  return `Rp${juta} Jt`;
-}
 
 export function MerlinAssociationsDirectory() {
   const [data, setData] = React.useState<Association[]>([]);
@@ -95,7 +90,7 @@ export function MerlinAssociationsDirectory() {
   }, [data, filter, search]);
 
   const totalMembers = data.reduce((s, a) => s + a.memberCount, 0);
-  const totalInvest = data.reduce((s, a) => s + a.totalInvestment, 0);
+  const avgMembers = data.length ? Math.round(totalMembers / data.length) : 0;
 
   return (
     <section id="direktori" className="relative py-24 sm:py-32 bg-background overflow-hidden">
@@ -109,13 +104,13 @@ export function MerlinAssociationsDirectory() {
           description="Setiap asosiasi punya ketua, kontak resmi, dan statistik member live dari database. Klik kartu untuk detail lengkap & daftar anggotanya."
         />
 
-        {/* Live summary stats */}
+        {/* Live summary stats — PUBLIC (counts only, no financial data) */}
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
             { icon: Crown, v: data.length || "—", l: "Asosiasi Aktif", c: "gold" },
             { icon: Users, v: totalMembers || "—", l: "Total Member", c: "ocean" },
-            { icon: Coins, v: formatRp(totalInvest), l: "Total Investasi Member", c: "seaweed" },
-            { icon: TrendingUp, v: totalMembers ? formatRp(Math.round(totalInvest / totalMembers)) : "—", l: "Rata-rata/Member", c: "gold" },
+            { icon: TrendingUp, v: avgMembers || "—", l: "Rata-rata Member/Asosiasi", c: "seaweed" },
+            { icon: MapPin, v: "20+", l: "Provinsi Terjangkau", c: "gold" },
           ].map((s, i) => {
             const Icon = s.icon;
             return (
@@ -205,15 +200,9 @@ export function MerlinAssociationsDirectory() {
                         <Crown className="h-2.5 w-2.5" />
                         “{a.julukan}”
                       </div>
-                      <div className="mt-3 pt-3 border-t border-border grid grid-cols-2 gap-2 text-center">
-                        <div>
-                          <div className="font-display text-lg font-bold text-ocean">{a.memberCount}</div>
-                          <div className="text-[9px] uppercase text-muted-foreground">Member</div>
-                        </div>
-                        <div>
-                          <div className="font-display text-lg font-bold text-seaweed">{formatRp(a.totalInvestment)}</div>
-                          <div className="text-[9px] uppercase text-muted-foreground">Investasi</div>
-                        </div>
+                      <div className="mt-3 pt-3 border-t border-border text-center">
+                        <div className="font-display text-2xl font-bold text-ocean">{a.memberCount}</div>
+                        <div className="text-[9px] uppercase tracking-wide text-muted-foreground">Member Terdaftar</div>
                       </div>
                       <div className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
                         <Crown className="h-3 w-3 text-gold" />
@@ -317,20 +306,13 @@ export function MerlinAssociationsDirectory() {
                 )}
               </div>
 
-              {/* Statistik */}
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-                <div className="rounded-xl border border-border p-3">
-                  <div className="font-display text-xl font-bold text-ocean">{selected.memberCount}</div>
-                  <div className="text-[9px] uppercase text-muted-foreground">Member</div>
-                </div>
-                <div className="rounded-xl border border-border p-3">
-                  <div className="font-display text-xl font-bold text-seaweed">{formatRp(selected.totalInvestment)}</div>
-                  <div className="text-[9px] uppercase text-muted-foreground">Investasi</div>
-                </div>
-                <div className="rounded-xl border border-border p-3">
-                  <div className="font-display text-xl font-bold text-gold">{formatRp(selected.avgInvestment)}</div>
-                  <div className="text-[9px] uppercase text-muted-foreground">Rata-rata</div>
-                </div>
+              {/* Statistik — PUBLIC: count only. Financial details internal-only. */}
+              <div className="mt-4 rounded-xl border border-border bg-muted/30 p-4 text-center">
+                <div className="font-display text-3xl font-bold text-ocean">{selected.memberCount}</div>
+                <div className="text-[10px] uppercase tracking-wide text-muted-foreground">Member Terdaftar</div>
+                <p className="mt-2 text-[10px] text-muted-foreground/80 italic">
+                  🔒 Data finansial & investasi member bersifat internal — akses via PIN di section Statistik Member.
+                </p>
               </div>
 
               <a

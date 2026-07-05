@@ -5,8 +5,29 @@ import { db } from "@/lib/db";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// GET /api/members — daftar member dengan filter, search, pagination
+// Internal PIN — for accessing individual member data (emails, phones, names).
+// Set via env var MERLIN_INTERNAL_PIN, defaults to "MERLIN-2030" for demo.
+const INTERNAL_PIN = process.env.MERLIN_INTERNAL_PIN || "MERLIN-2030";
+
+function isInternalAuthorized(req: NextRequest): boolean {
+  const pin = req.headers.get("x-merlin-pin");
+  return !!pin && pin === INTERNAL_PIN;
+}
+
+// GET /api/members — INTERNAL ONLY. Returns full member records (name, email, phone, etc.)
+// Public aggregate stats available via /api/members/stats (no personal data).
 export async function GET(req: NextRequest) {
+  // Authorization check — this endpoint exposes sensitive personal data
+  if (!isInternalAuthorized(req)) {
+    return NextResponse.json(
+      {
+        error: "Akses ditolak. Data member individu bersifat internal. Gunakan /api/members/stats untuk statistik publik, atau sertakan PIN internal via header 'x-merlin-pin'.",
+        public: true,
+      },
+      { status: 401 }
+    );
+  }
+
   try {
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search")?.trim() || "";

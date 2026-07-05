@@ -81,3 +81,41 @@ Stage Summary:
   ✅ No console errors
 - Database sekarang: 10 asosiasi + 61 member (60 seed + 1 baru hasil test pendaftaran)
 - Final status: FINISHING COMPLETE. MERLIN 2030 kini sovereign-grade dengan database live + animasi sinematik.
+
+---
+Task ID: PRIVACY-1 (Klasifikasi Informasi)
+Agent: Main Orchestrator (Z.ai Code)
+Task: Kaji ulang & sembunyikan data member individu dari publik. Hanya statistik agregat yang publik; data lengkap butuh PIN internal.
+
+Work Log:
+- Kaji ulang klasifikasi informasi:
+  🔴 SENSITIF (sembunyi dari publik): nama member, email, telepon, kode member, investasi pribadi, kabupaten, status verifikasi, avg investasi per asosiasi.
+  🟢 PUBLIK (boleh tampil): total member, distribusi per asosiasi/provinsi/jenis/status (angka), growth timeline, info asosiasi (ketua, kontak resmi, bidang), member count per asosiasi.
+  🟡 INTERNAL (PIN-gated): daftar member lengkap dengan semua data sensitif.
+- Created API /api/members/stats — PUBLIC, returns ONLY aggregate stats (total, perAssociation counts, perType, perProvince, perStatus, growth). NO individual records, NO emails, NO phones, NO names.
+- Updated API /api/members GET — now requires header "x-merlin-pin" validation. Returns 401 with {public: true} if unauthorized. PIN stored in env MERLIN_INTERNAL_PIN (default "MERLIN-2030").
+- Rewrote MerlinMemberRegistry:
+  - Default: PublicStats component — KPI cards (total/asosiasi/provinsi/growth), bar chart distribusi per asosiasi, pie chart per jenis, top 8 provinsi bars, area chart growth timeline, status breakdown, privacy notice banner.
+  - Badge "TAMPILAN PUBLIK · Data sensitif dilindungi" / "MODE INTERNAL AKTIF".
+  - "Akses Internal (Pengurus)" button → PIN modal (KeyRound icon, show/hide PIN, demo hint, kerahasiaan notice).
+  - tryUnlock() validates PIN against protected API; on success sets validatedPin + internalMode.
+  - InternalMemberList: full member cards (avatar, nama, email, phone, kode, investasi, status) with search/filter/pagination, sends x-merlin-pin header. Security warning banner.
+  - "Keluar Mode Internal" button to lock back to public.
+- Updated MerlinAssociationsDirectory: removed totalInvestment & avgInvestment from public cards & modal. Cards now show member count only. Modal shows lock notice "Data finansial internal via PIN". Summary stats replaced financial data with "Rata-rata Member/Asosiasi" & "Provinsi Terjangkau".
+- Updated nav label "Daftar Member" → "Statistik Member".
+- Removed unused imports (Coins, formatRp) from associations directory.
+- Lint: clean (0 errors). Dev server: 200.
+
+Stage Summary:
+- Agent Browser verification PASSED:
+  ✅ PUBLIC view: NO emails, NO phones, NO member codes — only aggregate stats (Total Member: 61, distributions, growth chart, privacy notice)
+  ✅ API /api/members WITHOUT PIN → 401 rejected (hasError, isPublic, noMembers)
+  ✅ API /api/members/stats PUBLIC → aggregate only, no emails in response
+  ✅ PIN modal opens, accepts input with show/hide toggle
+  ✅ Correct PIN (MERLIN-2030) → MODE INTERNAL AKTIF, individual data (email, phone, member code, nama) all visible
+  ✅ WRONG PIN → "PIN salah" rejected, stays public
+  ✅ "Keluar Mode Internal" → locks back to public view
+  ✅ Associations directory: NO investment data publicly, only member counts
+  ✅ Mobile responsive (iPhone 14): privacy holds, no sensitive data, no errors
+  ✅ No console errors
+- Information classification now sovereign-grade: public sees transparency stats, internal sees full member data via PIN. Privasi & keamanan data rakyat terjaga.
