@@ -1,0 +1,318 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-playfair);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* MERLIN ocean brand palette */
+  --color-ocean: var(--ocean);
+  --color-ocean-deep: var(--ocean-deep);
+  --color-ocean-darker: var(--ocean-darker);
+  --color-ocean-light: var(--ocean-light);
+  --color-seaweed: var(--seaweed);
+  --color-seaweed-light: var(--seaweed-light);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-foam: var(--foam);
+  --color-abyss: var(--abyss);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* MERLIN brand: deep ocean blue, seaweed green, gold */
+  --ocean: #0a4d8c;
+  --ocean-deep: #07396b;
+  --ocean-darker: #052748;
+  --ocean-light: #1e6fb8;
+  --seaweed: #007a5a;
+  --seaweed-light: #0fa37a;
+  --gold: #c9a227;
+  --gold-light: #e3c25a;
+  --foam: #f3f9fc;
+  --abyss: #03152b;
+
+  --background: #f6fafd;
+  --foreground: #0a2238;
+  --card: #ffffff;
+  --card-foreground: #0a2238;
+  --popover: #ffffff;
+  --popover-foreground: #0a2238;
+  --primary: #0a4d8c;
+  --primary-foreground: #ffffff;
+  --secondary: #e8f1f8;
+  --secondary-foreground: #07396b;
+  --muted: #eef4f9;
+  --muted-foreground: #4a6680;
+  --accent: #007a5a;
+  --accent-foreground: #ffffff;
+  --destructive: #c0392b;
+  --border: #d6e3ef;
+  --input: #d6e3ef;
+  --ring: #0a4d8c;
+  --chart-1: #0a4d8c;
+  --chart-2: #007a5a;
+  --chart-3: #c9a227;
+  --chart-4: #1e6fb8;
+  --chart-5: #0fa37a;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0a2238;
+  --sidebar-primary: #0a4d8c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f1f8;
+  --sidebar-accent-foreground: #07396b;
+  --sidebar-border: #d6e3ef;
+  --sidebar-ring: #0a4d8c;
+}
+
+.dark {
+  --ocean: #1e6fb8;
+  --ocean-deep: #0a4d8c;
+  --ocean-darker: #07396b;
+  --ocean-light: #3a8fd0;
+  --seaweed: #0fa37a;
+  --seaweed-light: #2ec095;
+  --gold: #e3c25a;
+  --gold-light: #f0d97a;
+  --foam: #0a2238;
+  --abyss: #01091a;
+
+  --background: #04111f;
+  --foreground: #e8f1f8;
+  --card: #071f38;
+  --card-foreground: #e8f1f8;
+  --popover: #071f38;
+  --popover-foreground: #e8f1f8;
+  --primary: #1e6fb8;
+  --primary-foreground: #ffffff;
+  --secondary: #0c2a4a;
+  --secondary-foreground: #e8f1f8;
+  --muted: #0c2a4a;
+  --muted-foreground: #93b3cf;
+  --accent: #0fa37a;
+  --accent-foreground: #ffffff;
+  --destructive: #e74c3c;
+  --border: #143b5f;
+  --input: #143b5f;
+  --ring: #1e6fb8;
+  --chart-1: #1e6fb8;
+  --chart-2: #0fa37a;
+  --chart-3: #e3c25a;
+  --chart-4: #3a8fd0;
+  --chart-5: #2ec095;
+  --sidebar: #071f38;
+  --sidebar-foreground: #e8f1f8;
+  --sidebar-primary: #1e6fb8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #0c2a4a;
+  --sidebar-accent-foreground: #e8f1f8;
+  --sidebar-border: #143b5f;
+  --sidebar-ring: #1e6fb8;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01";
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--ocean) 30%, transparent);
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), Georgia, serif;
+  }
+
+  /* Ocean gradient backgrounds */
+  .bg-ocean-gradient {
+    background: linear-gradient(135deg, var(--ocean-darker) 0%, var(--ocean-deep) 45%, var(--ocean) 100%);
+  }
+  .bg-abyss-gradient {
+    background: linear-gradient(180deg, var(--abyss) 0%, var(--ocean-darker) 100%);
+  }
+  .bg-foam-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, var(--foam) 100%);
+  }
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  }
+  .text-gold-gradient {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .text-ocean-gradient {
+    background: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean) 50%, var(--seaweed-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Glass cards */
+  .glass {
+    background: color-mix(in oklab, white 8%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid color-mix(in oklab, white 14%, transparent);
+  }
+  .glass-gold {
+    background: color-mix(in oklab, var(--gold) 14%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid color-mix(in oklab, var(--gold) 38%, transparent);
+  }
+
+  .ring-gold {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--gold) 40%, transparent),
+      0 0 30px -8px color-mix(in oklab, var(--gold) 60%, transparent);
+  }
+
+  /* Animated wave divider */
+  .wave-divider {
+    background-image:
+      radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--ocean-light) 22%, transparent), transparent 60%);
+  }
+
+  /* Subtle dot grid */
+  .bg-dotgrid {
+    background-image: radial-gradient(color-mix(in oklab, var(--ocean-light) 22%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Shimmer for counters / highlights */
+  .shimmer {
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      color-mix(in oklab, white 45%, transparent) 50%,
+      transparent 80%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.6s linear infinite;
+  }
+
+  /* Floating animation */
+  .float-slow {
+    animation: floaty 7s ease-in-out infinite;
+  }
+  .float-slower {
+    animation: floaty 11s ease-in-out infinite;
+  }
+
+  /* Marquee */
+  .animate-marquee {
+    animation: marquee 38s linear infinite;
+  }
+
+  /* Pulse glow */
+  .pulse-glow {
+    animation: pulseGlow 3.2s ease-in-out infinite;
+  }
+
+  /* Ocean surface animated gradient */
+  .ocean-surface {
+    background:
+      linear-gradient(180deg, transparent 0%, color-mix(in oklab, var(--ocean-darker) 70%, transparent) 100%),
+      linear-gradient(110deg, var(--ocean-darker), var(--ocean-deep), var(--ocean), var(--ocean-deep), var(--ocean-darker));
+    background-size: 100% 100%, 300% 100%;
+    animation: oceanMove 16s ease infinite;
+  }
+
+  .scrollbar-merlin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-merlin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-merlin::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--ocean) 45%, transparent);
+    border-radius: 999px;
+  }
+  .scrollbar-merlin::-webkit-scrollbar-thumb:hover {
+    background: var(--ocean);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--gold) 40%, transparent); }
+  50% { box-shadow: 0 0 0 14px transparent; }
+}
+@keyframes oceanMove {
+  0% { background-position: 0% 0%, 0% 50%; }
+  50% { background-position: 0% 0%, 100% 50%; }
+  100% { background-position: 0% 0%, 0% 50%; }
+}
+@keyframes wave {
+  0% { transform: translateX(0) translateZ(0) scaleY(1); }
+  50% { transform: translateX(-25%) translateZ(0) scaleY(0.9); }
+  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+}
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spinSlow 26s linear infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
