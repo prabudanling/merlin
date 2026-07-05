@@ -59,8 +59,13 @@ export function MerlinAssociationsDirectory() {
     setLoading(true);
     try {
       const res = await fetch("/api/associations", { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = await res.json();
-      setData(json.associations || []);
+      // Validate structure
+      if (!json || !Array.isArray(json.associations)) {
+        throw new Error("Invalid associations response");
+      }
+      setData(json.associations);
     } catch {
       setData([]);
     } finally {

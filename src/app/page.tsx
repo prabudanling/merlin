@@ -17,33 +17,68 @@ import {
   MerlinCursorGlow,
   MerlinPageLoader,
 } from "@/components/merlin/merlin-animations";
+import { MerlinErrorBoundary } from "@/components/merlin/merlin-error-boundary";
 
 export default function Home() {
   return (
     <div className="relative min-h-screen flex flex-col bg-background">
-      <MerlinPageLoader />
-      <MerlinScrollProgress />
-      <MerlinCursorGlow />
-      <MerlinNav />
-      <main className="flex-1">
-        <MerlinHero />
-        <MerlinVision />
-        <MerlinEcosystem />
-        <MerlinAssociationsDirectory />
-        <MerlinMemberRegistry />
-        <MerlinEbip />
-        <MerlinTourism />
-        <MerlinDomains />
-        <MerlinMemberRights />
-        <MerlinRoadmap />
-        <MerlinInvestment />
-        <MerlinCarbon />
-        <MerlinTechnology />
-        <MerlinAI />
-        <MerlinJoinForm />
-        <MerlinCta />
-      </main>
-      <MerlinFooter />
+      <MerlinErrorBoundary sectionName="Shell Utama">
+        <MerlinPageLoader />
+        <MerlinScrollProgress />
+        <MerlinCursorGlow />
+        <MerlinNav />
+        <main className="flex-1">
+          <MerlinErrorBoundary sectionName="Hero">
+            <MerlinHero />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Visi & 9 Pilar">
+            <MerlinVision />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Ekosistem">
+            <MerlinEcosystem />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Direktori Asosiasi">
+            <MerlinAssociationsDirectory />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Statistik Member">
+            <MerlinMemberRegistry />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Eco Blue Industrial Park">
+            <MerlinEbip />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Blue Tourism & Produk">
+            <MerlinTourism />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="20 Domain PGA">
+            <MerlinDomains />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="16 Hak Member">
+            <MerlinMemberRights />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Roadmap">
+            <MerlinRoadmap />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Investasi">
+            <MerlinInvestment />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Blue Carbon">
+            <MerlinCarbon />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Teknologi & Governance">
+            <MerlinTechnology />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="MERLIN AI">
+            <MerlinAI />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="Form Pendaftaran">
+            <MerlinJoinForm />
+          </MerlinErrorBoundary>
+          <MerlinErrorBoundary sectionName="CTA">
+            <MerlinCta />
+          </MerlinErrorBoundary>
+        </main>
+        <MerlinFooter />
+      </MerlinErrorBoundary>
     </div>
   );
 }

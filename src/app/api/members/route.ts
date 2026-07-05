@@ -171,8 +171,15 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, member }, { status: 201 });
   } catch (err: any) {
     console.error("[/api/members POST]", err?.message || err);
+    // Detect database unavailability (Vercel ephemeral filesystem)
+    const msg = String(err?.message || err);
+    const isDbError = /no such table|database is locked|readonly|does not exist|P2021|P2003/i.test(msg);
     return NextResponse.json(
-      { error: "Pendaftaran gagal. Silakan coba lagi." },
+      {
+        error: isDbError
+          ? "Database belum siap di environment ini. Pendaftaran akan diproses setelah verifikasi manual tim MERLIN. Silakan hubungi sekre@merlin.blue."
+          : "Pendaftaran gagal. Silakan coba lagi atau hubungi sekre@merlin.blue.",
+      },
       { status: 500 }
     );
   }

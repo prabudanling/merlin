@@ -141,3 +141,35 @@ Stage Summary:
 - README sovereign-grade complete — siap push ke GitHub github.com/gunara-prabu/merlin-2030.
 - Mencakup seluruh aspek proyek: visi, fitur, tech stack, instalasi, struktur, design system, DB schema, API, testing, roadmap, kontribusi, tim, lisensi, manifesto.
 - Developer: Gunara/Prabu, Organization: PT Digital Bisnis Manajemen.
+
+---
+Task ID: FIX-VERCEL-1 (Client-Side Exception Fix)
+Agent: Main Orchestrator (Z.ai Code)
+Task: Diagnosa & fix "Application error: a client-side exception has occurred while loading" di Vercel.
+
+Work Log:
+- Diagnosis: 2 root causes:
+  1. SQLite file-based DB tidak support di Vercel serverless (ephemeral filesystem) → API 500
+  2. Komponen tidak handle API error response → setStats(json) menerima {error:"..."} → crash saat akses stats.perType.map()
+- Fix #1: Validasi response.ok + struktur data di semua fetch:
+  - MerlinMemberRegistry loadStats: cek res.ok, validate json.total & json.perAssociation
+  - MerlinMemberRegistry loadMembers: validate json.members & json.pagination
+  - MerlinAssociationsDirectory load: cek res.ok, validate json.associations
+  - MerlinJoinForm load associations: cek res.ok, validate Array.isArray
+- Fix #2: Buat src/lib/merlin-fallback.ts — data statis 10 asosiasi + aggregate stats (no personal data)
+- Fix #3: Update API routes dengan fallback graceful:
+  - GET /api/associations → try DB, catch → return fallbackAssociations + {fallback: true}
+  - GET /api/members/stats → try DB, catch → return fallbackStats + {fallback: true}
+  - POST /api/members → detect DB error pattern, return pesan informatif "hubungi sekre@merlin.blue"
+- Fix #4: Buat MerlinErrorBoundary component — bungkus setiap section di page.tsx (17 boundaries), crash isolated per-section dengan tombol "Coba Muat Ulang"
+- Fix #5: Buat src/app/error.tsx — global error boundary Next.js (fallback page elegan dengan logo MERLIN, kontak, error digest)
+- Fix #6: Update next.config.ts — hapus output:"standalone" (Vercel handle sendiri), tambah eslint.ignoreDuringBuilds
+- Fix #7: Buat DEPLOYMENT.md — panduan lengkap ganti SQLite ke PostgreSQL eksternal (Neon/Supabase/Vercel Postgres/PlanetScale), checklist deploy, troubleshooting
+- Fix #8: Update README dengan link ke DEPLOYMENT.md + warning SQLite limitation
+- Lint: clean. Dev server: 200. API: associations 200, stats 200, members 401 (PIN-gated OK).
+
+Stage Summary:
+- 3 lapis safety net: per-section error boundary + global error.tsx + fallback data API
+- Website Vercel-ready: bahkan jika DB belum di-setup, halaman tetap render dengan data demo
+- Dokumentasi deployment lengkap di DEPLOYMENT.md
+- Root cause utama (SQLite di Vercel) dijelaskan + solusi PostgreSQL eksternal

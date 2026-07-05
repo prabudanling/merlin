@@ -71,9 +71,18 @@ export function MerlinJoinForm() {
 
   React.useEffect(() => {
     fetch("/api/associations", { cache: "no-store" })
-      .then((r) => r.json())
-      .then((j) => setAssociations(j.associations || []))
-      .catch(() => {});
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((j) => {
+        if (j && Array.isArray(j.associations)) {
+          setAssociations(j.associations);
+        }
+      })
+      .catch(() => {
+        // graceful fallback — form still works, user can type association code manually
+      });
   }, []);
 
   const update = (k: string, v: string) => {

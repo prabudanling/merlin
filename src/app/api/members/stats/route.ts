@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { fallbackStats } from "@/lib/merlin-fallback";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 // GET /api/members/stats — PUBLIC aggregate statistics only
 // NO individual member data exposed. Only counts, distributions, growth.
+// Falls back to static data if database unavailable (Vercel serverless).
 export async function GET() {
   try {
     const [total, perAssoc, perType, perProvince, perStatus, growth] = await Promise.all([
@@ -71,11 +73,10 @@ export async function GET() {
       perProvince,
       perStatus,
       growth,
-      // NOTE: intentionally NO individual member records, NO emails, NO phones, NO names
-      // Those are only available via /api/members with internal PIN auth
     });
   } catch (err: any) {
-    console.error("[/api/members/stats]", err?.message || err);
-    return NextResponse.json({ error: "Gagal memuat statistik." }, { status: 500 });
+    // Database unavailable — return fallback aggregate stats (still no personal data)
+    console.warn("[/api/members/stats] DB unavailable, using fallback:", err?.message || err);
+    return NextResponse.json({ ...fallbackStats, fallback: true });
   }
 }

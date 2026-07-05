@@ -188,6 +188,8 @@ Sistem menerapkan **prinsip information classification** sovereign-grade:
 
 ## 🚀 Mulai Cepat
 
+> 💡 **Untuk deployment Vercel:** Baca **[DEPLOYMENT.md](./DEPLOYMENT.md)** — SQLite tidak support di Vercel serverless, perlu ganti ke PostgreSQL eksternal (Neon/Supabase/Vercel Postgres). Sistem sudah punya **fallback data** + error boundary jika DB belum siap.
+
 ### Prasyarat
 
 - **[Bun](https://bun.sh/)** v1.3+ (runtime & package manager)

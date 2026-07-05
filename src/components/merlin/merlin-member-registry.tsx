@@ -109,7 +109,12 @@ export function MerlinMemberRegistry() {
     setLoadingStats(true);
     try {
       const res = await fetch("/api/members/stats", { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = await res.json();
+      // Validate structure — API may return {error} on failure
+      if (!json || typeof json.total !== "number" || !Array.isArray(json.perAssociation)) {
+        throw new Error("Invalid stats response");
+      }
       setStats(json);
     } catch {
       setStats(null);
@@ -590,6 +595,10 @@ function InternalMemberList({ pin }: { pin: string }) {
       });
       if (!res.ok) throw new Error("unauthorized");
       const json = await res.json();
+      // Validate structure
+      if (!json || !Array.isArray(json.members) || !json.pagination) {
+        throw new Error("Invalid members response");
+      }
       setData(json);
     } catch {
       setData(null);
