@@ -312,7 +312,195 @@
   animation: spinSlow 26s linear infinite;
 }
 
+/* ============ PREMIUM FINISHING ANIMATIONS ============ */
+
+/* Scroll progress glow */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Page loader — ocean fill */
+@keyframes loaderFill {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes loaderFade {
+  0%, 70% { opacity: 1; pointer-events: auto; }
+  100% { opacity: 0; pointer-events: none; }
+}
+
+/* Reveal text mask — wipe from left */
+@keyframes revealWipe {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+/* Aurora gradient */
+@keyframes aurora {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.aurora-bg {
+  background: linear-gradient(120deg,
+    color-mix(in oklab, var(--ocean) 30%, transparent),
+    color-mix(in oklab, var(--seaweed) 30%, transparent),
+    color-mix(in oklab, var(--gold) 25%, transparent),
+    color-mix(in oklab, var(--ocean-light) 30%, transparent));
+  background-size: 300% 300%;
+  animation: aurora 18s ease infinite;
+}
+
+/* Card 3D tilt glow trail */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.tilt-card-inner {
+  transform: translateZ(40px);
+  transition: transform 0.25s ease;
+}
+
+/* Magnetic button */
+.magnetic {
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+/* Cursor glow follower */
+.cursor-glow {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--gold) 18%, transparent) 0%, transparent 65%);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+.cursor-glow.visible { opacity: 1; }
+
+/* Wave SVG divider */
+.wave-svg path {
+  animation: wavePath 12s ease-in-out infinite alternate;
+}
+@keyframes wavePath {
+  0% { d: path("M0,40 C150,80 350,0 600,40 C850,80 1050,0 1200,40 L1200,80 L0,80 Z"); }
+  100% { d: path("M0,50 C150,10 350,70 600,30 C850,-10 1050,60 1200,30 L1200,80 L0,80 Z"); }
+}
+
+/* Gradient text flow */
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.text-gradient-flow {
+  background: linear-gradient(90deg, var(--ocean-light), var(--gold), var(--seaweed-light), var(--ocean-light));
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 6s ease infinite;
+}
+
+/* Glow ring */
+@keyframes glowRing {
+  0%, 100% { box-shadow: 0 0 20px -5px color-mix(in oklab, var(--gold) 60%, transparent); }
+  50% { box-shadow: 0 0 40px 0px color-mix(in oklab, var(--gold) 80%, transparent); }
+}
+.glow-ring { animation: glowRing 3s ease-in-out infinite; }
+
+/* Number flip */
+@keyframes flipUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Stagger entrance */
+@keyframes staggerIn {
+  0% { opacity: 0; transform: translateY(24px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Sonar ripple */
+@keyframes sonar {
+  0% { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.sonar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid color-mix(in oklab, var(--gold) 50%, transparent);
+  animation: sonar 2.4s ease-out infinite;
+}
+
+/* Subtle grid pan */
+@keyframes gridPan {
+  0% { background-position: 0 0; }
+  100% { background-position: 44px 44px; }
+}
+.bg-gridpan {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--ocean-light) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--ocean-light) 12%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  animation: gridPan 22s linear infinite;
+}
+
+/* Skeleton shimmer for loading states */
+@keyframes skeleton {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton-merlin {
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--muted) 80%, transparent) 25%,
+    color-mix(in oklab, var(--ocean-light) 20%, transparent) 50%,
+    color-mix(in oklab, var(--muted) 80%, transparent) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.8s ease-in-out infinite;
+}
+
+/* Spotlight on hover */
+.spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklab, var(--gold) 18%, transparent),
+    transparent 40%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.spotlight:hover::before { opacity: 1; }
+
+/* Premium reduced-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+}
+
+/* Hide default cursor only on devices with fine pointer (desktop) */
+@media (pointer: fine) {
+  .cursor-glow-active * { cursor: none; }
 }

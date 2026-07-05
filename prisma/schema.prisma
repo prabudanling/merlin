@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// MERLIN 2030 — Prisma Schema
+// Masyarakat Ekosistem Rumput Laut Indonesia
 
 generator client {
   provider = "prisma-client-js"
@@ -13,20 +10,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// 10 Asosiasi MERLIN — "1 Rumah 10 Kamar"
+model Association {
+  id          String   @id @default(cuid())
+  code        String   @unique // APRLN, AKNBB, AIPRL, ...
+  name        String   // full name
+  julukan     String   // Laskar Laut, Gudang Laut, ...
+  line        String   // Hulu, Konsolidasi, Hilir 1, ...
+  bidang      String   // business focus description
+  color       String   // ocean | seaweed | gold
+  icon        String   // icon key
+  ketuaName   String   // chairman name
+  ketuaTitle  String   // chairman title
+  kontakEmail String?
+  kontakPhone String?
+  members     Member[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// Member MERLIN — petani, koperasi, industri, wisata, risit, dagang
+model Member {
+  id           String      @id @default(cuid())
+  memberCode   String      @unique // MERLIN-2026-000001
+  fullName     String
+  email        String      @unique
+  phone        String
+  province     String
+  regency      String?
+  associationId String
+  association  Association @relation(fields: [associationId], references: [id])
+  memberType   String      // Petani | Koperasi | Industri | Wisata | Riset | Dagang | Lainnya
+  role         String?     // Ketua, Sekretaris, Anggota
+  joinDate     DateTime    @default(now())
+  status       String      @default("Aktif") // Aktif | Pending | Nonaktif
+  investment   Float?      // kontribusi investasi (Rp juta)
+  notes        String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([associationId])
+  @@index([province])
+  @@index([memberType])
 }
