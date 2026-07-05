@@ -119,3 +119,25 @@ Stage Summary:
   ✅ Mobile responsive (iPhone 14): privacy holds, no sensitive data, no errors
   ✅ No console errors
 - Information classification now sovereign-grade: public sees transparency stats, internal sees full member data via PIN. Privasi & keamanan data rakyat terjaga.
+
+---
+Task ID: README-1 (Dokumentasi GitHub)
+Agent: Main Orchestrator (Z.ai Code)
+Task: Buat README terbaik di dunia untuk GitHub, dengan dev: gunara/prabu, PT Digital Bisnis Manajemen.
+
+Work Log:
+- Created README.md (642 lines, 25KB) — sovereign-grade documentation terbaik.
+- 17 major sections: Tentang, Highlight Strategis, Fitur Utama (17 section table, animasi, AI, klasifikasi), 10 Asosiasi, Tech Stack, Mulai Cepat, Struktur Proyek, Design System, Database Schema, API Reference, Environment Variables, Testing, Roadmap, Kontribusi, Tim, Lisensi, Manifesto, Kontak.
+- Premium badges: Next.js 16, TypeScript 5, Tailwind 4, Prisma 6, shadcn/ui, z-ai-web-dev-sdk + status/license/version/domain/build/PRs badges.
+- Hero image embedded (public/images/hero-ocean.png).
+- Brand identity table (8 color tokens dengan hex), logo description, typography (Playfair + Inter).
+- Full Prisma schema documentation (Association + Member models).
+- Complete API reference dengan curl examples untuk semua 4 endpoints (associations, members/stats public, members PIN-gated, merlin-ai LLM).
+- Developer credit: Gunara/Prabu — PT Digital Bisnis Manajemen.
+- Manifesto MERLIN + Perisai Konstitusional 100 Tahun (PGA-108) license.
+- Lint: clean. Dev server: 200.
+
+Stage Summary:
+- README sovereign-grade complete — siap push ke GitHub github.com/gunara-prabu/merlin-2030.
+- Mencakup seluruh aspek proyek: visi, fitur, tech stack, instalasi, struktur, design system, DB schema, API, testing, roadmap, kontribusi, tim, lisensi, manifesto.
+- Developer: Gunara/Prabu, Organization: PT Digital Bisnis Manajemen.
