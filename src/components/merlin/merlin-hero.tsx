@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, useInView, useMotionValue, animate } from "framer-motion";
-import { ChevronDown, Sparkles, Waves, Anchor } from "lucide-react";
+import { ChevronDown, Sparkles, Waves, ExternalLink, Palmtree, Compass } from "lucide-react";
 import { heroStats, merlin } from "@/lib/merlin-data";
 import { MerlinLogo } from "./merlin-nav";
 
@@ -59,12 +59,12 @@ export function MerlinHero() {
         className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity"
         style={{ backgroundImage: "url(/images/hero-ocean.png)" }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-abyss/60 via-ocean-darker/70 to-abyss" />
+      <div className="absolute inset-0 bg-gradient-to-b from-abyss/70 via-ocean-darker/75 to-abyss" />
 
       {/* Floating light orbs */}
       <div className="absolute top-1/4 left-[12%] h-72 w-72 rounded-full bg-ocean-light/20 blur-3xl float-slow" />
       <div className="absolute bottom-1/3 right-[15%] h-96 w-96 rounded-full bg-seaweed/20 blur-3xl float-slower" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 h-[40rem] w-[40rem] rounded-full bg-gold/8 blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 h-[40rem] w-[40rem] rounded-full bg-gold/10 blur-3xl" />
 
       {/* Dot grid overlay */}
       <div className="absolute inset-0 bg-dotgrid opacity-30" />
@@ -77,7 +77,7 @@ export function MerlinHero() {
           transition={{ duration: 0.7 }}
           className="flex justify-center"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-medium text-gold-light backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-gold/15 px-4 py-1.5 text-xs font-semibold text-gold-light backdrop-blur-sm">
             <Sparkles className="h-3.5 w-3.5" />
             Master Document 165 PGA · Sovereign-Grade Standard
           </div>
@@ -91,7 +91,7 @@ export function MerlinHero() {
           className="flex justify-center mt-8"
         >
           <div className="relative">
-            <div className="absolute inset-0 blur-2xl bg-ocean-light/40 rounded-full" />
+            <div className="absolute inset-0 blur-2xl bg-gold/40 rounded-full" />
             <MerlinLogo className="relative h-24 w-24 text-gold float-slow" />
           </div>
         </motion.div>
@@ -106,27 +106,48 @@ export function MerlinHero() {
           <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight">
             <span className="text-gold-gradient">MERLIN</span>
           </h1>
-          <p className="mt-2 font-display text-xl sm:text-2xl md:text-3xl text-white/90 italic">
+          <p className="mt-2 font-display text-xl sm:text-2xl md:text-3xl text-white italic">
             2030
+          </p>
+          {/* Full name — KUNING EMAS, bold, clean contrast on dark abyss */}
+          <p className="mt-5 text-base sm:text-lg md:text-xl font-bold tracking-[0.15em] uppercase text-gold-light drop-shadow-[0_2px_12px_rgba(227,194,90,0.4)]">
+            {merlin.fullName}
           </p>
         </motion.div>
 
-        {/* Full name + tagline */}
+        {/* Tagline + Nusaparadise badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-6 max-w-3xl mx-auto"
+          className="text-center mt-5 max-w-3xl mx-auto"
         >
-          <p className="text-base sm:text-lg text-ocean-light font-medium tracking-wide uppercase">
-            {merlin.fullName}
-          </p>
-          <p className="mt-4 font-display text-2xl sm:text-3xl md:text-4xl text-white leading-tight">
+          <p className="font-display text-2xl sm:text-3xl md:text-4xl text-white leading-tight font-semibold">
             {merlin.tagline}
           </p>
-          <p className="mt-4 text-sm sm:text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base text-white/85 max-w-2xl mx-auto leading-relaxed">
             {merlin.vision}
           </p>
+
+          {/* Nusaparadise.id premium badge — super mewah */}
+          <a
+            href={`https://${merlin.tourismDomain}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex group"
+          >
+            <div className="inline-flex items-center gap-2.5 rounded-full border-2 border-gold/60 bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 px-5 py-2.5 backdrop-blur-md hover:border-gold hover:from-gold/30 hover:to-gold/30 transition-all shadow-lg shadow-gold/20 hover:shadow-gold/40 hover:scale-105">
+              <Palmtree className="h-4 w-4 text-gold-light" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-light/90">
+                {merlin.tourismDesc}
+              </span>
+              <span className="h-3 w-px bg-gold/40" />
+              <span className="font-display text-base font-bold text-gold-light">
+                {merlin.tourismLabel}
+              </span>
+              <ExternalLink className="h-3.5 w-3.5 text-gold-light/70 group-hover:text-gold-light transition-colors" />
+            </div>
+          </a>
         </motion.div>
 
         {/* CTAs */}
@@ -138,21 +159,24 @@ export function MerlinHero() {
         >
           <a
             href="#ekosistem"
-            className="inline-flex items-center gap-2 rounded-full bg-gold-gradient px-7 py-3 text-sm font-semibold text-abyss shadow-xl shadow-gold/30 hover:scale-105 hover:shadow-gold/50 transition-all"
+            className="inline-flex items-center gap-2 rounded-full bg-gold-gradient px-7 py-3 text-sm font-bold text-abyss shadow-xl shadow-gold/30 hover:scale-105 hover:shadow-gold/50 transition-all"
           >
             <Waves className="h-4 w-4" />
             Jelajahi Ekosistem
           </a>
           <a
-            href="#ai"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3 text-sm font-semibold text-white backdrop-blur-sm hover:bg-white/15 transition-all"
+            href={`https://${merlin.tourismDomain}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-gold/50 bg-white/10 px-7 py-3 text-sm font-bold text-gold-light backdrop-blur-sm hover:bg-gold/15 hover:border-gold transition-all"
           >
-            <Sparkles className="h-4 w-4 text-gold" />
-            Bicara dengan MERLIN AI
+            <Compass className="h-4 w-4" />
+            Jelajahi Nusaparadise.id
+            <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </motion.div>
 
-        {/* Stats grid */}
+        {/* Stats grid — bumped contrast */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -162,7 +186,7 @@ export function MerlinHero() {
           {heroStats.map((stat, i) => (
             <div
               key={i}
-              className="glass rounded-xl p-4 text-center hover:ring-gold transition-all"
+              className="glass rounded-xl p-4 text-center hover:ring-gold transition-all border border-white/15"
             >
               <div className="font-display text-2xl sm:text-3xl font-bold text-gold-light">
                 <AnimatedCounter
@@ -171,10 +195,10 @@ export function MerlinHero() {
                   suffix={stat.suffix}
                 />
               </div>
-              <div className="mt-1 text-xs font-semibold text-white/90 uppercase tracking-wide">
+              <div className="mt-1 text-xs font-bold text-white uppercase tracking-wide">
                 {stat.label}
               </div>
-              <div className="text-[10px] text-white/50 mt-0.5">{stat.desc}</div>
+              <div className="text-[10px] text-white/75 mt-0.5">{stat.desc}</div>
             </div>
           ))}
         </motion.div>
@@ -184,27 +208,28 @@ export function MerlinHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/50"
+          className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/70"
         >
-          <span className="text-[10px] uppercase tracking-[0.3em]">Gulir</span>
+          <span className="text-[10px] uppercase tracking-[0.3em] font-semibold">Gulir</span>
           <ChevronDown className="h-4 w-4 animate-bounce" />
         </motion.div>
       </div>
 
-      {/* Bottom marquee of partners */}
-      <div className="absolute bottom-0 inset-x-0 border-t border-white/10 bg-abyss/70 backdrop-blur-md py-2 overflow-hidden">
+      {/* Bottom marquee of partners — bumped contrast */}
+      <div className="absolute bottom-0 inset-x-0 border-t border-gold/20 bg-abyss/85 backdrop-blur-md py-2.5 overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(2)].map((_, k) => (
-            <div key={k} className="flex items-center gap-8 px-4 text-white/40 text-xs font-medium uppercase tracking-widest">
-              <span>merlin.blue</span><span className="text-gold/60">◆</span>
-              <span>10 Asosiasi</span><span className="text-gold/60">◆</span>
-              <span>40 Eco Blue Industrial Park</span><span className="text-gold/60">◆</span>
-              <span>40 Blue Tourism</span><span className="text-gold/60">◆</span>
-              <span>100+ Produk Hilir</span><span className="text-gold/60">◆</span>
-              <span>165 PGA Documents</span><span className="text-gold/60">◆</span>
-              <span>5 Juta Lapangan Kerja</span><span className="text-gold/60">◆</span>
-              <span>12 Juta Ton CO₂</span><span className="text-gold/60">◆</span>
-              <span>Rp680 Triliun</span><span className="text-gold/60">◆</span>
+            <div key={k} className="flex items-center gap-8 px-4 text-white/80 text-xs font-bold uppercase tracking-widest">
+              <span className="text-gold-light">merlin.blue</span><span className="text-gold">◆</span>
+              <span className="text-gold-light">nusaparadise.id</span><span className="text-gold">◆</span>
+              <span>10 Asosiasi</span><span className="text-gold">◆</span>
+              <span>40 Eco Blue Industrial Park</span><span className="text-gold">◆</span>
+              <span>40 Blue Tourism</span><span className="text-gold">◆</span>
+              <span>100+ Produk Hilir</span><span className="text-gold">◆</span>
+              <span>165 PGA Documents</span><span className="text-gold">◆</span>
+              <span>5 Juta Lapangan Kerja</span><span className="text-gold">◆</span>
+              <span>12 Juta Ton CO₂</span><span className="text-gold">◆</span>
+              <span>Rp680 Triliun</span><span className="text-gold">◆</span>
             </div>
           ))}
         </div>

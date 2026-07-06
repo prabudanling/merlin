@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Waves } from "lucide-react";
+import { Menu, X, Waves, Palmtree } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -64,7 +64,7 @@ export function MerlinNav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-2.5 py-1.5 text-xs font-medium text-white/70 hover:text-white rounded-md hover:bg-white/10 transition-colors"
+                className="px-2.5 py-1.5 text-xs font-semibold text-white/85 hover:text-gold-light rounded-md hover:bg-white/10 transition-colors"
               >
                 {link.label}
               </Link>
@@ -73,11 +73,13 @@ export function MerlinNav() {
 
           <div className="flex items-center gap-2">
             <a
-              href="#investasi"
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-gold-gradient px-4 py-2 text-xs font-semibold text-abyss shadow-lg shadow-gold/20 hover:shadow-gold/40 hover:scale-105 transition-all"
+              href="https://nusaparadise.id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-gold-gradient px-4 py-2 text-xs font-bold text-abyss shadow-lg shadow-gold/20 hover:shadow-gold/40 hover:scale-105 transition-all"
             >
-              <Waves className="h-3.5 w-3.5" />
-              Bergabung
+              <Palmtree className="h-3.5 w-3.5" />
+              Nusaparadise.id
             </a>
             <button
               onClick={() => setOpen((v) => !v)}
@@ -105,7 +107,7 @@ export function MerlinNav() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="px-3 py-2 text-sm font-medium text-white/80 hover:text-white rounded-md hover:bg-white/10 transition-colors"
+                  className="px-3 py-2 text-sm font-semibold text-white/90 hover:text-gold-light rounded-md hover:bg-white/10 transition-colors"
                 >
                   {link.label}
                 </Link>

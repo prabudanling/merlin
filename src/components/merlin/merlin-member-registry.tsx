@@ -340,7 +340,7 @@ function PublicStats({ stats, loading }: { stats: Stats | null; loading: boolean
 
   if (!stats) {
     return (
-      <div className="mt-10 text-center text-white/50">
+      <div className="mt-10 text-center text-white/75">
         <RefreshCw className="h-8 w-8 mx-auto mb-2 opacity-40" />
         Statistik belum tersedia.
       </div>
@@ -388,7 +388,7 @@ function PublicStats({ stats, loading }: { stats: Stats | null; loading: boolean
             >
               <Icon className={cn("h-5 w-5 mx-auto", s.c)} />
               <div className={cn("mt-2 font-display text-3xl font-bold", s.c)}>{s.v}</div>
-              <div className="text-[10px] uppercase tracking-wide text-white/60">{s.l}</div>
+              <div className="text-[10px] uppercase tracking-wide text-white/75">{s.l}</div>
             </motion.div>
           );
         })}
@@ -410,8 +410,8 @@ function PublicStats({ stats, loading }: { stats: Stats | null; loading: boolean
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={stats.perAssociation.map((p) => ({ name: p.association?.code || "?", count: p.count, fill: COLOR_HEX[p.association?.color || "ocean"] }))} layout="vertical" margin={{ left: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" horizontal={false} />
-                <XAxis type="number" tick={{ fontSize: 11, fill: "rgba(255,255,255,0.6)" }} />
-                <YAxis type="category" dataKey="name" tick={{ fontSize: 11, fill: "rgba(255,255,255,0.7)" }} width={50} />
+                <XAxis type="number" tick={{ fontSize: 11, fill: "rgba(255,255,255,0.9)" }} />
+                <YAxis type="category" dataKey="name" tick={{ fontSize: 11, fill: "rgba(255,255,255,0.95)" }} width={50} />
                 <Tooltip
                   contentStyle={{ borderRadius: 12, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(7,31,56,0.95)", color: "#fff", fontSize: 12 }}
                   formatter={(v: number) => [`${v} member`, "Jumlah"]}
@@ -444,7 +444,7 @@ function PublicStats({ stats, loading }: { stats: Stats | null; loading: boolean
                   {typeChartData.map((e, i) => <Cell key={i} fill={e.fill} />)}
                 </Pie>
                 <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(7,31,56,0.95)", color: "#fff", fontSize: 12 }} formatter={(v: number) => [`${v} member`, "Jumlah"]} />
-                <Legend wrapperStyle={{ fontSize: 10, color: "rgba(255,255,255,0.7)" }} iconType="circle" />
+                <Legend wrapperStyle={{ fontSize: 10, color: "rgba(255,255,255,0.95)" }} iconType="circle" />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -507,8 +507,8 @@ function PublicStats({ stats, loading }: { stats: Stats | null; loading: boolean
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" />
-                <XAxis dataKey="month" tick={{ fontSize: 10, fill: "rgba(255,255,255,0.6)" }} />
-                <YAxis tick={{ fontSize: 10, fill: "rgba(255,255,255,0.6)" }} allowDecimals={false} />
+                <XAxis dataKey="month" tick={{ fontSize: 10, fill: "rgba(255,255,255,0.9)" }} />
+                <YAxis tick={{ fontSize: 10, fill: "rgba(255,255,255,0.9)" }} allowDecimals={false} />
                 <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(7,31,56,0.95)", color: "#fff", fontSize: 12 }} formatter={(v: number) => [`${v} member baru`, "Pertumbuhan"]} />
                 <Area type="monotone" dataKey="members" stroke="#0fa37a" strokeWidth={2.5} fill="url(#growthGrad)" />
               </AreaChart>
@@ -532,7 +532,7 @@ function PublicStats({ stats, loading }: { stats: Stats | null; loading: boolean
           {stats.perStatus.map((s) => (
             <div key={s.status} className="rounded-xl border border-white/10 bg-white/5 p-3 text-center">
               <div className="font-display text-2xl font-bold text-gold-light">{s.count}</div>
-              <div className="text-[10px] uppercase tracking-wide text-white/60">{s.status}</div>
+              <div className="text-[10px] uppercase tracking-wide text-white/75">{s.status}</div>
             </div>
           ))}
         </div>
@@ -631,13 +631,13 @@ function InternalMemberList({ pin }: { pin: string }) {
       {/* Search + filter */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/65" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Cari nama, email, kode member, telepon, kabupaten..."
-            className="w-full rounded-full border border-white/15 bg-white/5 pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-gold/40"
+            className="w-full rounded-full border border-white/15 bg-white/5 pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/65 focus:outline-none focus:ring-2 focus:ring-gold/40"
           />
         </div>
         <Button onClick={() => setShowFilters((v) => !v)} variant="outline" className="border-white/15 bg-white/5 text-white hover:bg-white/10 relative">
@@ -656,28 +656,28 @@ function InternalMemberList({ pin }: { pin: string }) {
       {showFilters && (
         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="mt-3 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 glass rounded-2xl p-4">
           <div>
-            <label className="text-[10px] uppercase tracking-wide text-white/50">Asosiasi</label>
+            <label className="text-[10px] uppercase tracking-wide text-white/75">Asosiasi</label>
             <select value={association} onChange={(e) => setAssociation(e.target.value)} className="mt-1 w-full rounded-lg border border-white/15 bg-abyss/60 px-3 py-2 text-sm text-white">
               <option value="all">Semua Asosiasi</option>
               {associations.map((a) => <option key={a.code} value={a.code}>{a.code} — {a.name}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-[10px] uppercase tracking-wide text-white/50">Jenis Member</label>
+            <label className="text-[10px] uppercase tracking-wide text-white/75">Jenis Member</label>
             <select value={type} onChange={(e) => setType(e.target.value)} className="mt-1 w-full rounded-lg border border-white/15 bg-abyss/60 px-3 py-2 text-sm text-white">
               <option value="all">Semua Jenis</option>
               {data?.facets.memberTypes.map((t) => <option key={t} value={t}>{t}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-[10px] uppercase tracking-wide text-white/50">Provinsi</label>
+            <label className="text-[10px] uppercase tracking-wide text-white/75">Provinsi</label>
             <select value={province} onChange={(e) => setProvince(e.target.value)} className="mt-1 w-full rounded-lg border border-white/15 bg-abyss/60 px-3 py-2 text-sm text-white">
               <option value="all">Semua Provinsi</option>
               {data?.facets.provinces.map((p) => <option key={p} value={p}>{p}</option>)}
             </select>
           </div>
           <div>
-            <label className="text-[10px] uppercase tracking-wide text-white/50">Status</label>
+            <label className="text-[10px] uppercase tracking-wide text-white/75">Status</label>
             <select value={status} onChange={(e) => setStatus(e.target.value)} className="mt-1 w-full rounded-lg border border-white/15 bg-abyss/60 px-3 py-2 text-sm text-white">
               <option value="all">Semua Status</option>
               <option value="Aktif">Aktif</option>
@@ -688,7 +688,7 @@ function InternalMemberList({ pin }: { pin: string }) {
         </motion.div>
       )}
 
-      <div className="mt-4 flex items-center justify-between text-xs text-white/60">
+      <div className="mt-4 flex items-center justify-between text-xs text-white/75">
         <span>{loading ? "Memuat..." : total > 0 ? `Menampilkan ${startIdx}–${endIdx} dari ${total} member` : "Tidak ada member"}</span>
         <button onClick={loadMembers} className="inline-flex items-center gap-1 hover:text-gold-light transition-colors">
           <RefreshCw className={cn("h-3 w-3", loading && "animate-spin")} /> Refresh
@@ -721,7 +721,7 @@ function InternalMemberList({ pin }: { pin: string }) {
                   <span className="inline-flex items-center gap-1 rounded-full border border-ocean/30 bg-ocean/10 px-2 py-0.5 text-[10px] font-semibold text-ocean-light">{m.association.code}</span>
                   {m.role && <span className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-[10px] font-semibold text-white/70">{m.role}</span>}
                 </div>
-                <div className="mt-3 space-y-1 text-[11px] text-white/60">
+                <div className="mt-3 space-y-1 text-[11px] text-white/75">
                   <div className="flex items-center gap-1.5"><MapPin className="h-3 w-3 shrink-0 text-ocean-light" /><span className="truncate">{m.regency ? `${m.regency}, ` : ""}{m.province}</span></div>
                   <div className="flex items-center gap-1.5"><Mail className="h-3 w-3 shrink-0 text-ocean-light" /><span className="truncate">{m.email}</span></div>
                   <div className="flex items-center gap-1.5"><Phone className="h-3 w-3 shrink-0 text-ocean-light" /><span className="truncate">{m.phone}</span></div>
@@ -729,7 +729,7 @@ function InternalMemberList({ pin }: { pin: string }) {
                     <div className="flex items-center gap-1.5"><Coins className="h-3 w-3 shrink-0 text-gold" /><span className="text-gold-light font-semibold">{formatRp(m.investment)}</span></div>
                   )}
                 </div>
-                <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] text-white/40">
+                <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] text-white/65">
                   <span>Bergabung {formatDate(m.joinDate)}</span>
                   <span className="italic">“{m.association.julukan}”</span>
                 </div>
@@ -738,7 +738,7 @@ function InternalMemberList({ pin }: { pin: string }) {
           ))}
         </StaggerGroup>
       ) : (
-        <div className="mt-12 text-center text-white/50">
+        <div className="mt-12 text-center text-white/75">
           <Sparkles className="h-10 w-10 mx-auto mb-3 opacity-30" />
           Belum ada member yang cocok. Coba ubah filter.
         </div>

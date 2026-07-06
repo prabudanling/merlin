@@ -11,6 +11,9 @@ export const merlin = {
   vision:
     "Menjadikan Indonesia sebagai Pusat Industri Hilirisasi Rumput Laut Dunia pada 2030, Berkelanjutan, Berdaulat, dan Bermartabat.",
   domain: "merlin.blue",
+  tourismDomain: "nusaparadise.id",
+  tourismLabel: "Nusaparadise.id",
+  tourismDesc: "Blue Tourism Flagship Destination",
   version: "1.0.0 — Master Document 165 PGA Completed",
   classification: "Sovereign-Grade Standard",
   manifesto:

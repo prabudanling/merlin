@@ -209,7 +209,7 @@ export function MerlinMemberRights() {
               <h3 className="mt-3 font-display text-base font-bold text-white leading-tight pr-6">
                 {right.title}
               </h3>
-              <p className="mt-2 text-xs text-white/60 leading-relaxed">{right.desc}</p>
+              <p className="mt-2 text-xs text-white/75 leading-relaxed">{right.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -227,22 +227,22 @@ export function MerlinMemberRights() {
           </h3>
           <div className="mt-6 grid sm:grid-cols-3 gap-4 text-center">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <div className="text-xs uppercase tracking-wide text-white/50">Sebelum MERLIN</div>
+              <div className="text-xs uppercase tracking-wide text-white/75">Sebelum MERLIN</div>
               <div className="mt-2 font-display text-3xl font-bold text-red-400">Rp1,2 jt</div>
-              <div className="text-xs text-white/50">/bulan · garis kemiskinan</div>
+              <div className="text-xs text-white/75">/bulan · garis kemiskinan</div>
             </div>
             <div className="rounded-2xl border border-gold/30 bg-gold/10 p-5">
               <div className="text-xs uppercase tracking-wide text-gold-light">Harga Jaminan</div>
               <div className="mt-2 font-display text-3xl font-bold text-gold-light">Rp18.000</div>
-              <div className="text-xs text-white/60">/kg vs pasar Rp6.000 (3x lipat)</div>
+              <div className="text-xs text-white/75">/kg vs pasar Rp6.000 (3x lipat)</div>
             </div>
             <div className="rounded-2xl border border-seaweed/30 bg-seaweed/10 p-5">
               <div className="text-xs uppercase tracking-wide text-seaweed-light">Dengan MERLIN</div>
               <div className="mt-2 font-display text-3xl font-bold text-seaweed-light">Rp6–9 jt</div>
-              <div className="text-xs text-white/60">/bulan · naik 5–8x lipat</div>
+              <div className="text-xs text-white/75">/bulan · naik 5–8x lipat</div>
             </div>
           </div>
-          <div className="mt-4 text-center text-xs text-white/50">
+          <div className="mt-4 text-center text-xs text-white/75">
             North Star Metric: Member Welfare Index (MWI) — target 80/100 pada 2030
           </div>
         </motion.div>

@@ -53,7 +53,7 @@ export function MerlinEbip() {
             >
               <div className="font-display text-4xl font-bold text-gold-light">{s.v}</div>
               <div className="mt-1 text-sm font-semibold text-white">{s.l}</div>
-              <div className="text-[11px] text-white/50">{s.d}</div>
+              <div className="text-[11px] text-white/75">{s.d}</div>
             </motion.div>
           ))}
         </div>
@@ -88,7 +88,7 @@ export function MerlinEbip() {
                   <div className="h-px flex-1 bg-gold/40" />
                 </div>
                 <div className="font-display text-lg font-bold text-seaweed-light">{loop.to}</div>
-                <p className="mt-2 text-xs text-white/60 leading-relaxed">{loop.desc}</p>
+                <p className="mt-2 text-xs text-white/75 leading-relaxed">{loop.desc}</p>
                 {i < zeroWasteLoop.length - 1 && (
                   <div className="hidden md:block absolute -right-2 top-1/2 -translate-y-1/2 z-10 h-5 w-5 rounded-full bg-gold text-abyss flex items-center justify-center text-[10px] font-bold">
                     →
@@ -149,7 +149,7 @@ export function MerlinEbip() {
                     <span className="font-semibold text-white text-sm">{loc.region}</span>
                     <span className="font-display text-lg font-bold text-gold-light">{loc.count}</span>
                   </div>
-                  <p className="text-[11px] text-white/55 mt-0.5">{loc.provinces}</p>
+                  <p className="text-[11px] text-white/80 mt-0.5">{loc.provinces}</p>
                 </button>
               ))}
             </div>
@@ -160,7 +160,7 @@ export function MerlinEbip() {
                   Sentra Pilot: Wakatobi · Derawan · Raja Ampat
                 </span>
               </div>
-              <p className="mt-1 text-xs text-white/60">
+              <p className="mt-1 text-xs text-white/75">
                 Tiga kawasan pilot 2027 — ekosistem terumbu karang terbaik, dukungan pemerintah
                 daerah, dan akses logistik ekspor.
               </p>

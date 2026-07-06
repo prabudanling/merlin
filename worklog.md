@@ -173,3 +173,37 @@ Stage Summary:
 - Website Vercel-ready: bahkan jika DB belum di-setup, halaman tetap render dengan data demo
 - Dokumentasi deployment lengkap di DEPLOYMENT.md
 - Root cause utama (SQLite di Vercel) dijelaskan + solusi PostgreSQL eksternal
+
+---
+Task ID: COLOR-1 (Master Color Strategist Audit)
+Agent: Main Orchestrator (Z.ai Code) — Role: Master Color Strategist & UI Visual Architect
+Task: Ubah nama lengkap jadi kuning, tambah nusaparadise.id, audit kontras semua section — clean & mewah.
+
+Work Log:
+- Added merlin.tourismDomain/tourismLabel/tourismDesc to merlin-data.ts (nusaparadise.id as Blue Tourism flagship).
+- Rewrote MerlinHero:
+  • "Masyarakat Ekosistem Rumput Laut Indonesia" now text-gold-light (#f0d97a, rgb 240,217,122) with drop-shadow glow — KUNING EMAS bold uppercase tracking on dark abyss = clean contrast.
+  • Added premium Nusaparadise.id badge: gold double-border, gradient bg, Palmtree icon, "Blue Tourism Flagship Destination" label, ExternalLink icon — super mewah.
+  • Replaced "Bicara dengan MERLIN AI" CTA → "Jelajahi Nusaparadise.id" (external link https://nusaparadise.id, Compass + ExternalLink icons, gold border).
+  • Bumped stat desc text-white/50 → /75, stat label → font-bold, marquee text-white/40 → /80 + gold-light highlights, vision text-white/70 → /85, scroll indicator /50 → /70.
+- CRITICAL FIX: .bg-foam-gradient in globals.css was hardcoded #ffffff (white) — in dark mode this created white background with light text-foreground = INVISIBLE. Changed to var(--background) → now theme-aware (dark bg in dark mode). This fixed contrast on 5 sections: Visi, Produk, Domains, Roadmap, JoinForm.
+- Bulk contrast fix across all components: text-white/50 → /75, /55 → /80, /60 → /75, /40 → /65 (40+ instances). Zero low-contrast white text remaining on dark sections.
+- Chart contrast bumped: tick fill rgba(255,255,255,0.6) → 0.9, legend color 0.7 → 0.95.
+- SectionHeader description: text-white/70 → /85 for light mode.
+- Updated MerlinNav: "Bergabung" button → "Nusaparadise.id" (gold gradient, Palmtree icon, external link). Nav links text-white/70 → /85 font-semibold. Mobile menu links /80 → /90.
+- Updated MerlinCta: primary CTA now "Jelajahi Nusaparadise.id" (gold gradient). Description text-white/75 → /90.
+- Updated MerlinFooter: added Nusaparadise.id to contact list (Palmtree icon, gold-light link), added "nusaparadise.id" to brand tags (gold-bordered pills), footer text bumped to /75.
+- 5 total Nusaparadise.id links on page: nav button, hero badge, hero CTA, CTA section, footer.
+- Lint: clean. Dev server: 200. No console errors.
+
+Stage Summary:
+- Agent Browser verification PASSED:
+  ✅ "Masyarakat Ekosistem Rumput Laut Indonesia" = rgb(240,217,122) kuning emas (desktop + mobile)
+  ✅ Nusaparadise.id badge prominent in hero (premium gold double-border)
+  ✅ CTA "Jelajahi Nusaparadise.id" replaced "Bicara dengan MERLIN AI" (external link)
+  ✅ 5 Nusaparadise.id links across page (nav, hero badge, hero CTA, CTA section, footer)
+  ✅ Foam-gradient sections now theme-aware — title rgb(232,241,248) on dark bg = clean contrast
+  ✅ All low-contrast white text bumped (40+ instances fixed)
+  ✅ Chart ticks/legends at 0.9/0.95 contrast
+  ✅ Mobile responsive — yellow name + Nusaparadise visible, no errors
+- First impression: SUPER MEWAH — gold name, gold badge, gold CTAs, clean contrast throughout.

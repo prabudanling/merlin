@@ -115,7 +115,7 @@ export function MerlinPageLoader() {
           >
             MERLIN 2030
           </motion.div>
-          <div className="relative mt-2 text-[10px] uppercase tracking-[0.3em] text-white/40">
+          <div className="relative mt-2 text-[10px] uppercase tracking-[0.3em] text-white/65">
             Memuat Ekosistem Bahari...
           </div>
           {/* progress bar */}

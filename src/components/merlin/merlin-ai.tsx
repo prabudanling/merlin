@@ -161,7 +161,7 @@ export function MerlinAI() {
             {messages.length > 0 && (
               <button
                 onClick={clear}
-                className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs text-white/75 hover:text-white hover:bg-white/10 transition-colors"
               >
                 <Trash2 className="h-3.5 w-3.5" />
                 Reset
@@ -183,7 +183,7 @@ export function MerlinAI() {
                 <h3 className="font-display text-lg font-bold text-white">
                   Selamat datang di MERLIN AI
                 </h3>
-                <p className="mt-1 text-sm text-white/60 max-w-md">
+                <p className="mt-1 text-sm text-white/75 max-w-md">
                   Saya siap menjelaskan visi, ekosistem, dan seluruh arsitektur MERLIN 2030.
                   Pilih pertanyaan di bawah atau tulis sendiri.
                 </p>
@@ -240,7 +240,7 @@ export function MerlinAI() {
                 </div>
                 <div className="rounded-2xl rounded-tl-sm bg-white/10 border border-white/5 px-4 py-3 flex items-center gap-2">
                   <Loader2 className="h-4 w-4 animate-spin text-gold-light" />
-                  <span className="text-sm text-white/60">MERLIN AI merenung...</span>
+                  <span className="text-sm text-white/75">MERLIN AI merenung...</span>
                   <span className="flex gap-1">
                     <span className="h-1.5 w-1.5 rounded-full bg-gold/60 animate-bounce [animation-delay:-0.3s]" />
                     <span className="h-1.5 w-1.5 rounded-full bg-gold/60 animate-bounce [animation-delay:-0.15s]" />
@@ -265,7 +265,7 @@ export function MerlinAI() {
                 }}
                 placeholder="Tanyakan apa saja tentang MERLIN 2030..."
                 rows={1}
-                className="min-h-[44px] max-h-32 resize-none bg-white/5 border-white/15 text-white placeholder:text-white/40 focus-visible:ring-gold/40"
+                className="min-h-[44px] max-h-32 resize-none bg-white/5 border-white/15 text-white placeholder:text-white/65 focus-visible:ring-gold/40"
               />
               <Button
                 onClick={() => send()}
@@ -276,7 +276,7 @@ export function MerlinAI() {
                 <Send className="h-4 w-4" />
               </Button>
             </div>
-            <p className="mt-1.5 text-[10px] text-white/40 text-center">
+            <p className="mt-1.5 text-[10px] text-white/65 text-center">
               MERLIN AI · Didukung z-ai-web-dev-sdk · Data dari Master Document 165 PGA
             </p>
           </div>

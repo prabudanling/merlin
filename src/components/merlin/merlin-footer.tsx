@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import {
-  Waves, Crown, Mail, MapPin, Globe, ArrowUp, Sparkles, Anchor,
+  Waves, Crown, Mail, MapPin, Globe, ArrowUp, Sparkles, Anchor, Palmtree, ExternalLink,
 } from "lucide-react";
 import { merlin } from "@/lib/merlin-data";
 import { MerlinLogo } from "./merlin-nav";
@@ -31,7 +31,7 @@ export function MerlinCta() {
             <br />
             <span className="text-gold-gradient">Peradaban Bahari Baru</span>
           </h2>
-          <p className="mt-6 text-base sm:text-lg text-white/75 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-6 text-base sm:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
             MERLIN bukan sekadar bisnis — ini gerakan kemandirian ekonomi maritim Indonesia.
             Kepada pemerintah, investor, akademisi, petani, dan dunia: bergabunglah.
             Belilah produk MERLIN. Dukunglah UU Rumput Laut. Investasikan di Eco Blue Industrial Park.
@@ -39,8 +39,18 @@ export function MerlinCta() {
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a
+              href={`https://${merlin.tourismDomain}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-gold-gradient px-8 py-3.5 text-sm font-bold text-abyss shadow-xl shadow-gold/30 hover:scale-105 hover:shadow-gold/50 transition-all"
+            >
+              <Palmtree className="h-4 w-4" />
+              Jelajahi Nusaparadise.id
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+            <a
               href="#ai"
-              className="inline-flex items-center gap-2 rounded-full bg-gold-gradient px-8 py-3.5 text-sm font-semibold text-abyss shadow-xl shadow-gold/30 hover:scale-105 hover:shadow-gold/50 transition-all"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-gold/50 bg-white/10 px-8 py-3.5 text-sm font-bold text-gold-light backdrop-blur-sm hover:bg-gold/15 hover:border-gold transition-all"
             >
               <Sparkles className="h-4 w-4" />
               Konsultasi dengan MERLIN AI
@@ -66,7 +76,7 @@ export function MerlinCta() {
                 <div key={i} className="glass rounded-2xl p-4">
                   <Icon className="h-6 w-6 text-gold-light mx-auto" />
                   <div className="mt-2 text-sm font-bold text-white">{s.l}</div>
-                  <div className="text-[11px] text-white/60">{s.d}</div>
+                  <div className="text-[11px] text-white/75">{s.d}</div>
                 </div>
               );
             })}
@@ -93,7 +103,7 @@ export function MerlinFooter() {
                 <div className="text-[10px] uppercase tracking-[0.2em] text-gold/80">2030</div>
               </div>
             </div>
-            <p className="mt-4 text-sm text-white/60 max-w-md leading-relaxed">
+            <p className="mt-4 text-sm text-white/75 max-w-md leading-relaxed">
               {merlin.fullName}. Mewujudkan Indonesia sebagai Pusat Industri Hilirisasi Rumput Laut
               Dunia pada 2030 — berkelanjutan, berdaulat, dan bermartabat.
             </p>
@@ -102,10 +112,10 @@ export function MerlinFooter() {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {["Sovereign-Grade", "Zero Waste", "Blue Carbon", "165 PGA"].map((t) => (
+              {["Sovereign-Grade", "Zero Waste", "Blue Carbon", "165 PGA", "nusaparadise.id"].map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] text-white/70"
+                  className="rounded-full border border-gold/30 bg-gold/8 px-3 py-1 text-[11px] font-semibold text-gold-light"
                 >
                   {t}
                 </span>
@@ -128,7 +138,7 @@ export function MerlinFooter() {
                 ["#domain", "20 Domain × 165 PGA"],
               ].map(([href, label]) => (
                 <li key={href}>
-                  <a href={href} className="text-white/60 hover:text-gold-light transition-colors">
+                  <a href={href} className="text-white/75 hover:text-gold-light transition-colors">
                     {label}
                   </a>
                 </li>
@@ -141,13 +151,25 @@ export function MerlinFooter() {
             <h4 className="font-display text-sm font-bold text-gold-light uppercase tracking-wider mb-3">
               Hubungi
             </h4>
-            <ul className="space-y-3 text-sm text-white/60">
+            <ul className="space-y-3 text-sm text-white/75">
               <li className="flex items-start gap-2">
                 <Globe className="h-4 w-4 mt-0.5 text-ocean-light shrink-0" />
                 <span>
                   Domain resmi:{" "}
                   <span className="text-gold-light font-mono">{merlin.domain}</span>
                 </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Palmtree className="h-4 w-4 mt-0.5 text-gold shrink-0" />
+                <a
+                  href={`https://${merlin.tourismDomain}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold-light font-mono hover:underline"
+                >
+                  {merlin.tourismDomain}
+                </a>
+                <span className="text-white/75 text-[11px]">— Blue Tourism</span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 mt-0.5 text-ocean-light shrink-0" />
@@ -167,7 +189,7 @@ export function MerlinFooter() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/50 text-center sm:text-left">
+          <p className="text-xs text-white/75 text-center sm:text-left">
             © 2026 MERLIN — Masyarakat Ekosistem Rumput Laut Indonesia. Master Document 165 PGA
             Completed. Disusun oleh Dewan Pakar 46 lintas bidang.
           </p>

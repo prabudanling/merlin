@@ -175,7 +175,7 @@
     background: linear-gradient(180deg, var(--abyss) 0%, var(--ocean-darker) 100%);
   }
   .bg-foam-gradient {
-    background: linear-gradient(180deg, #ffffff 0%, var(--foam) 100%);
+    background: linear-gradient(180deg, var(--background) 0%, var(--foam) 100%);
   }
   .bg-gold-gradient {
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);

@@ -96,7 +96,7 @@ export function MerlinTourism() {
               <div key={i} className="glass-gold rounded-2xl p-5 text-center">
                 <div className="font-display text-3xl font-bold text-gold-light">{s.v}</div>
                 <div className="mt-1 text-sm font-semibold">{s.l}</div>
-                <div className="text-[11px] text-white/60">{s.d}</div>
+                <div className="text-[11px] text-white/75">{s.d}</div>
               </div>
             ))}
           </motion.div>

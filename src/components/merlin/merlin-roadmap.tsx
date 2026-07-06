@@ -194,7 +194,7 @@ export function MerlinInvestment() {
           <div className="font-display text-6xl sm:text-7xl md:text-8xl font-bold text-gold-gradient">
             Rp680T
           </div>
-          <p className="mt-2 text-sm text-white/60 uppercase tracking-widest">
+          <p className="mt-2 text-sm text-white/75 uppercase tracking-widest">
             Total Investasi MERLIN 2030
           </p>
         </motion.div>
@@ -216,11 +216,11 @@ export function MerlinInvestment() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={investmentData} layout="vertical" margin={{ left: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" horizontal={false} />
-                  <XAxis type="number" tick={{ fontSize: 11, fill: "rgba(255,255,255,0.6)" }} />
+                  <XAxis type="number" tick={{ fontSize: 11, fill: "rgba(255,255,255,0.9)" }} />
                   <YAxis
                     type="category"
                     dataKey="name"
-                    tick={{ fontSize: 10, fill: "rgba(255,255,255,0.7)" }}
+                    tick={{ fontSize: 10, fill: "rgba(255,255,255,0.95)" }}
                     width={140}
                   />
                   <Tooltip
@@ -283,7 +283,7 @@ export function MerlinInvestment() {
                     formatter={(v: number) => [`${v}%`, "Share"]}
                   />
                   <Legend
-                    wrapperStyle={{ fontSize: 10, color: "rgba(255,255,255,0.7)" }}
+                    wrapperStyle={{ fontSize: 10, color: "rgba(255,255,255,0.95)" }}
                     iconType="circle"
                   />
                 </PieChart>
@@ -317,7 +317,7 @@ export function MerlinInvestment() {
                     className="h-full bg-gold-gradient rounded-full"
                   />
                 </div>
-                <p className="mt-2 text-[11px] text-white/55 leading-relaxed">{c.detail}</p>
+                <p className="mt-2 text-[11px] text-white/80 leading-relaxed">{c.detail}</p>
               </div>
             ))}
           </div>
@@ -336,7 +336,7 @@ export function MerlinInvestment() {
             >
               <div className="font-display text-2xl font-bold text-gold-light">{f.value}</div>
               <div className="mt-1 text-xs font-semibold text-white">{f.label}</div>
-              <div className="text-[10px] text-white/50">{f.desc}</div>
+              <div className="text-[10px] text-white/75">{f.desc}</div>
             </motion.div>
           ))}
         </div>
@@ -384,7 +384,7 @@ export function MerlinCarbon() {
                 {s.value}
               </div>
               <div className="mt-1 text-sm font-semibold text-white">{s.label}</div>
-              <div className="text-[11px] text-white/60 mt-0.5">{s.desc}</div>
+              <div className="text-[11px] text-white/75 mt-0.5">{s.desc}</div>
             </motion.div>
           ))}
         </div>
